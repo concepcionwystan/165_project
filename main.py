@@ -8,7 +8,7 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:password@localhost/postgres'
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:password@localhost/postgres'
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = 'my_secret_key'
 db = SQLAlchemy(app)
@@ -90,13 +90,11 @@ def list_artists():
             list_artists.append(artist.as_dict())
         return jsonify(list_artists)
     else:
-        artists = Artist.query.filter_by(groupID=groupID).all()
+        artists = Artist.query.filter_by(groupId=groupID).all()
         list_artists = []
         for artist in artists:
             list_artists.append(artist.as_dict())
         return jsonify(list_artists)
-
-
 
 
 
